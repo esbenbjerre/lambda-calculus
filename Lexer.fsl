@@ -1,0 +1,22 @@
+{
+
+open FSharp.Text.Lexing
+open Parser
+
+let lexemeAsString lexbuf = 
+  LexBuffer<char>.LexemeString lexbuf
+
+}
+
+rule tokenize = parse
+  | [' ' '\t' '\r'] { tokenize lexbuf }
+  | '\n'            { lexbuf.EndPos <- lexbuf.EndPos.NextLine; tokenize lexbuf }
+  | ['a'-'z''A'-'Z']*
+                    { VAR (lexemeAsString lexbuf) }
+  | '.'             { DOT } 
+  | '\\'            { LAMBDA } 
+  | 'λ'             { LAMBDA }
+  | '('             { LPAR } 
+  | ')'             { RPAR } 
+  | eof             { EOF }
+  | _               { failwith "Lexer error: illegal symbol" }

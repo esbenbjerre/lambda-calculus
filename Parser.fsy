@@ -1,0 +1,32 @@
+%{
+  open Absyn
+%}
+
+%token LAMBDA
+%token <string> VAR
+%token DOT
+%token LPAR RPAR
+%token EOF
+
+%start start
+%type <Absyn.Term> start 
+
+%%
+
+start:
+    Term EOF              { $1 }
+;
+
+Term:
+    LAMBDA VAR DOT Term   { Lam($2, $4) }
+  | Expr                  { $1 }
+;
+
+Expr:
+   Expr'                  { $1 }
+  | Expr Expr'            { App($1, $2) }
+
+Expr':
+   VAR                    { Var($1) }
+  | LPAR Term RPAR        { $2 }
+;

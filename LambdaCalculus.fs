@@ -1,9 +1,6 @@
 ﻿module LambdaCalculus
 
-type Term =
-  Var of string
-  | Lam of string * Term
-  | App of Term * Term
+open Absyn
 
 let rec freeVars =
   function
@@ -35,7 +32,6 @@ let substitute x t e =
     | _ -> e
   substitute' x t (alpha e)
 
-/// Sestoft, P.: Demonstrating Lambda Calculus Reduction (2001)
 let rec cbn e =
   match e with
   | App (t1, t2) ->
@@ -45,6 +41,8 @@ let rec cbn e =
     | _ -> App(t1', t2)
   | _ -> e
 
+/// Reduces a term to normal form
+/// Sestoft, P.: Demonstrating Lambda Calculus Reduction (2001)
 let rec nor e =
   match e with
   | Lam (x, e) -> Lam(x, nor e)

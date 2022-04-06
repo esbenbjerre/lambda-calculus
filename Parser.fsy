@@ -18,12 +18,16 @@ start:
 ;
 
 Term:
-    LAMBDA VAR DOT Term   { Lam($2, $4) }
+    LAMBDA Vars DOT Term  { List.fold (fun exp arg -> Lam(arg, exp)) $4 $2 }
   | Expr                  { $1 }
 ;
 
+Vars:
+    VAR                   { [ $1 ] }
+  | Vars VAR              { $2 :: $1 }
+
 Expr:
-   Expr'                  { $1 }
+    Expr'                 { $1 }
   | Expr Expr'            { App($1, $2) }
 
 Expr':

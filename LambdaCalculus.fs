@@ -59,7 +59,7 @@ let toString e =
     match e' with
     | Var x -> x
     | Lam (x, t) ->
-      let s = $"\\{x}.{toString' 0 t}"
+      let s = $"λ{x}.{toString' 0 t}"
       if prec > 0 then parens s else s
     | App (t1, t2) ->
       let s = $"{toString' 1 t1} {toString' 2 t2}"

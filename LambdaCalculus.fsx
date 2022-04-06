@@ -12,6 +12,7 @@ let parse input =
   let lexbuf = LexBuffer<char>.FromString input
   Parser.start Lexer.tokenize lexbuf
 
-parse @"(\f.\g.\h.f g(h h))(\x.\y.x)h(\x.x x)"
-|> nor
+//parse @"(\f.\g.\h.f g(h h))(\x.\y.x)h(\x.x x)"
+parse @"\x y z.k"
+//|> nor
 |> toString

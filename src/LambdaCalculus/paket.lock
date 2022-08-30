@@ -1,6 +1,6 @@
 NUGET
   remote: https://api.nuget.org/v3/index.json
-    FSharp.Core (6.0.5)
+    FSharp.Core (6.0.3)
     FsLexYacc (10.2)
       FSharp.Core (>= 4.5.2)
       FsLexYacc.Runtime (>= 10.2 < 10.3)

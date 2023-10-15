@@ -1,4 +1,4 @@
-#r "packages/FsLexYacc.Runtime/lib/netstandard2.0/FsLexYacc.Runtime.dll"
+#r "nuget: FsLexYacc"
 
 #load "Absyn.fs"
 #load "Parser.fs"
@@ -12,7 +12,8 @@ let parse input =
   let lexbuf = LexBuffer<char>.FromString input
   Parser.start Lexer.tokenize lexbuf
 
-//parse @"(\f.\g.\h.f g(h h))(\x.\y.x)h(\x.x x)"
-parse @"\x y z.k"
-//|> nor
+// AND TRUE FALSE
+"(\p.\q.p q p) (\x.\y.x) (\x.\y.y)"
+|> parse
+|> nor
 |> toString

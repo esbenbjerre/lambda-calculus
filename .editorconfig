@@ -1,0 +1,29 @@
+root=true
+
+[*]
+end_of_line=lf
+trim_trailing_whitespace=true
+insert_final_newline=true
+
+[*.{fs,fsx}]
+indent_size=2
+indent_style=space
+charset=utf-8
+max_line_length=120
+
+# Fantomas specific settings.
+fsharp_max_if_then_else_short_width=80
+fsharp_max_dot_get_expression_width=80
+fsharp_max_value_binding_width=120
+fsharp_max_function_binding_width=120
+
+// infix (e.g. pipes)
+fsharp_max_infix_operator_expression=100
+
+// list/arrays
+fsharp_max_array_or_list_width=100
+
+// records
+fsharp_max_record_width=120
+fsharp_max_record_number_of_items=2
+fsharp_record_multiline_formatter=number_of_items
